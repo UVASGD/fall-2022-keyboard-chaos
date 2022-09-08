@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Player : Destructible
 { 
@@ -37,16 +39,33 @@ public class Player : Destructible
     public float lastSliceCall = 0;
     public int sliceDmg = 10;
 
+    [SerializeField]
+    private Image imageCooldownSlice;
+    [SerializeField]
+    private TMP_Text textCooldownSlice;
+
     //Dizzy Dizzy = 2 
     public float dizzyCD = 30;
     public float lastDizzyCall = 0;
     public int dizzyDmg = 2;
+
+    [SerializeField]
+    private Image imageCooldownDizzy;
+
+    [SerializeField]
+    private TMP_Text textCooldownDizzy;
 
     //Unsurprising Slash = 3 (name not permanet just can't think of anything else that annoys dizzy people)
     //Limited by swingRange
     public float unsurprisingCD = 6;
     public float lastUnsurprisingCall = 0;
     public int unsurprisingDmg = 1; //(damage will be x20 on dizzy)
+
+    [SerializeField]
+    private Image imageCooldownUnsurprising;
+
+    [SerializeField]
+    private TMP_Text textCooldownUnsurprising;
 
     // Start is called before the first frame update
     void Start()
@@ -105,6 +124,7 @@ public class Player : Destructible
         //Destructible destruct = target.GetComponent<Destructible>(); //maybe we want some abilitys to hit non-enemeies???? Food for thought otherwise whoops I have another layer of classes  for no reason :shrugs:
         Enemy enemy = target.GetComponent<Enemy>();
         UpdateCDs();
+        UIUpdate();
         if(lastAutoSwing >= autoSwingTimer && Vector3.Distance(transform.position, target.gameObject.transform.position) <= swingRange){
             lastAutoSwing = 0;
             enemy.TakeDamage(autoDmg); 
@@ -115,12 +135,15 @@ public class Player : Destructible
             lastSliceCall = 0;
             enemy.TakeDamage(sliceDmg);
             animator.SetTrigger("coolAttack");
+            textCooldownSlice.gameObject.SetActive(true);
         }
         //Dizzy
         if(lastDizzyCall >= dizzyCD && Input.GetKey("2")){
             lastDizzyCall = 0;
             enemy.MakeDizzy();
             enemy.TakeDamage(dizzyDmg);
+            textCooldownDizzy.gameObject.SetActive(true);
+        
         }
         // Unsurprising Slash
         if(lastUnsurprisingCall >= unsurprisingCD && Input.GetKey("3") && Vector3.Distance(transform.position, target.gameObject.transform.position) <= swingRange){
@@ -133,6 +156,7 @@ public class Player : Destructible
                 enemy.TakeDamage(unsurprisingDmg);
                 animator.SetTrigger("aa");
             }
+            textCooldownUnsurprising.gameObject.SetActive(true);
         }
 
     }
@@ -143,5 +167,24 @@ public class Player : Destructible
         lastDizzyCall += Time.fixedDeltaTime;
         lastUnsurprisingCall += Time.fixedDeltaTime;
     }
+
+    private void UIUpdate(){
+        UICDImage(lastSliceCall, sliceCD, ref imageCooldownSlice, ref textCooldownSlice);
+        UICDImage(lastDizzyCall, dizzyCD, ref imageCooldownDizzy, ref textCooldownDizzy);
+        UICDImage(lastUnsurprisingCall, unsurprisingCD, ref imageCooldownUnsurprising, ref textCooldownUnsurprising);
+    }
+
+    private void UICDImage(float lastCall, float CD, ref Image imageCooldown, ref TMP_Text textCooldown){
+        if(lastCall >= CD){
+            //TODO: maybe also pass in background alpha as a conditional here? just one more lmao
+            textCooldown.gameObject.SetActive(false);
+            imageCooldown.fillAmount = 0.0f;
+        }
+        else{
+            textCooldown.text = Mathf.RoundToInt(CD - lastCall).ToString();
+            imageCooldown.fillAmount = 1 - (lastCall / CD);
+        }
+    }
+
 
 }
