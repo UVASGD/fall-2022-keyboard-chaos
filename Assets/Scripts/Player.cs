@@ -110,15 +110,14 @@ public class Player : Destructible
             //transform.rotation = Quaternion.LookRotation(Vector3.Lerp(transform.rotation.eulerAngles, target.transform.position - transform.position, Time.deltaTime));
         }
 
-        // Changes the height position of the player..
+        // Changes the height position of the player.
         if (Input.GetButtonDown("Jump") && groundedPlayer)
         {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
-        //controller.Move(playerVelocity * Time.deltaTime); 
-        //transform.rotation = Quaternion.LookRotation(turnedMove);
+        controller.Move(playerVelocity * Time.deltaTime);
     }
     // Fixed Update is called on a consistant basis
     void FixedUpdate(){
