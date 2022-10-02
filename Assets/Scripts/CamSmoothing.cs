@@ -16,6 +16,6 @@ public class CamSmoothing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameObject.transform.rotation = camSmoother.transform.rotation;
+        gameObject.transform.rotation.SetEulerAngles(gameObject.transform.rotation.eulerAngles + Time.deltaTime * 2 * (camSmoother.transform.rotation.eulerAngles - gameObject.transform.rotation.eulerAngles));
     }
 }

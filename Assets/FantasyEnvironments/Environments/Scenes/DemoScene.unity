@@ -688,6 +688,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4243724423293762, guid: c07f24e35f07ce74ba43afa35d48adf7, type: 3}
   m_PrefabInstance: {fileID: 973539593}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &481735729 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2034320806025086629, guid: dbc1a7416f9d1724c8ae419bdc37decf, type: 3}
+  m_PrefabInstance: {fileID: 6066470434177074197}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &586193107
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1676,6 +1681,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1125273024023562886, guid: dbc1a7416f9d1724c8ae419bdc37decf, type: 3}
+      propertyPath: camSmoother
+      value: 
+      objectReference: {fileID: 481735729}
     - target: {fileID: 2365602016985692404, guid: dbc1a7416f9d1724c8ae419bdc37decf, type: 3}
       propertyPath: m_Name
       value: DogPBR
@@ -1724,6 +1733,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3428175803020543619, guid: dbc1a7416f9d1724c8ae419bdc37decf, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 4744220941573131}
     - target: {fileID: 6066470433598646764, guid: dbc1a7416f9d1724c8ae419bdc37decf, type: 3}
       propertyPath: target
       value: 
@@ -1764,10 +1777,6 @@ PrefabInstance:
       propertyPath: imageCooldownUnsurprising
       value: 
       objectReference: {fileID: 1167707348}
-    - target: {fileID: 6066470433976387119, guid: dbc1a7416f9d1724c8ae419bdc37decf, type: 3}
-      propertyPath: m_UseGravity
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6066470434537687063, guid: dbc1a7416f9d1724c8ae419bdc37decf, type: 3}
       propertyPath: target
       value: 
