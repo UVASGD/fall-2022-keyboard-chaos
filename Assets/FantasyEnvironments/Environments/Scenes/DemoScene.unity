@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2003931976}
-  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1098,6 +1098,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1201852444 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2365602016986047700, guid: dbc1a7416f9d1724c8ae419bdc37decf, type: 3}
+  m_PrefabInstance: {fileID: 6066470434177074197}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1338624700 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8122691428779559664, guid: 635be59f9469d534da20de86a8f968b1, type: 3}
@@ -1732,6 +1737,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 710056275}
     - target: {fileID: 6066470433976387117, guid: dbc1a7416f9d1724c8ae419bdc37decf, type: 3}
+      propertyPath: transform2
+      value: 
+      objectReference: {fileID: 1201852444}
+    - target: {fileID: 6066470433976387117, guid: dbc1a7416f9d1724c8ae419bdc37decf, type: 3}
       propertyPath: textCooldownDizzy
       value: 
       objectReference: {fileID: 333859879}
@@ -1755,6 +1764,10 @@ PrefabInstance:
       propertyPath: imageCooldownUnsurprising
       value: 
       objectReference: {fileID: 1167707348}
+    - target: {fileID: 6066470433976387119, guid: dbc1a7416f9d1724c8ae419bdc37decf, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6066470434537687063, guid: dbc1a7416f9d1724c8ae419bdc37decf, type: 3}
       propertyPath: target
       value: 

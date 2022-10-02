@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 
 public class Player : Destructible
-{ 
+{
     Animator animator;
     
     //Movement stuff
@@ -84,28 +84,29 @@ public class Player : Destructible
             playerVelocity.y = 0f;
         }
 
-        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        float facing = Camera.main.transform.eulerAngles.y;
-        Vector3 turnedMove = Quaternion.Euler( 0, facing, 0) * move;
-        controller.Move(turnedMove * Time.deltaTime * playerSpeed);
-        
+        //Vector3 move = new Vector3(-1 * Input.GetAxis("Vertical"), 0, Input.GetAxis("Horizontal"));
+
+        Vector3 towardsTarget = (target.transform.position - transform.position).normalized;
+        Vector3 tangentToMotionCircle = Vector3.Cross(Vector3.up, towardsTarget); //counterclockwise
+        Vector3 move = towardsTarget * Input.GetAxis("Vertical") + tangentToMotionCircle * Input.GetAxis("Horizontal");
+        controller.Move(move * Time.deltaTime * playerSpeed);
+
         animator.SetBool("Running", true);
         if (move.magnitude < .2){ //TODO: finick with this number or change fomre "Horizontal"/"Vertical"
             animator.SetBool("Running", false);
         }
         if (move != Vector3.zero)
         {
-            gameObject.transform.forward = move;
-            transform.rotation = Quaternion.LookRotation(turnedMove);
+            gameObject.transform.forward = Vector3.Slerp(gameObject.transform.forward, move, Time.deltaTime*10);
         }
-        
+
         //spin towards target if stationary (so you dont attack behind you lol)
         if (move == Vector3.zero){
             //gracefully stolen code (like 90% of this project tbh)
             Vector3 lookPos = target.transform.position - transform.position;
             lookPos.y = 0;
             Quaternion rotation = Quaternion.LookRotation(lookPos);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 2); //this 2 just makes it spin a lil faster
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 5); //this 2 just makes it spin a lil faster
             //transform.rotation = Quaternion.LookRotation(Vector3.Lerp(transform.rotation.eulerAngles, target.transform.position - transform.position, Time.deltaTime));
         }
 
@@ -116,7 +117,7 @@ public class Player : Destructible
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
-        controller.Move(playerVelocity * Time.deltaTime); 
+        //controller.Move(playerVelocity * Time.deltaTime); 
         //transform.rotation = Quaternion.LookRotation(turnedMove);
     }
     // Fixed Update is called on a consistant basis
