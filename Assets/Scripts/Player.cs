@@ -23,6 +23,9 @@ public class Player : Destructible
 
     public int swingRange = 4;
     public GameObject target; //TODO, be able to swap target (also extend this same target to PlayerCamera.cs)
+    public bool isTargeting = true;
+
+    public Transform camera;
 
     //Abilities
     //TO ADD NEW: 
@@ -85,10 +88,29 @@ public class Player : Destructible
         }
 
         //Vector3 move = new Vector3(-1 * Input.GetAxis("Vertical"), 0, Input.GetAxis("Horizontal"));
-
-        Vector3 towardsTarget = (target.transform.position - transform.position).normalized;
-        Vector3 tangentToMotionCircle = Vector3.Cross(Vector3.up, towardsTarget); //counterclockwise
-        Vector3 move = towardsTarget * Input.GetAxis("Vertical") + tangentToMotionCircle * Input.GetAxis("Horizontal");
+        Vector3 move;
+        // if targeting something, then move in circle around it or move towards it
+        if (isTargeting)
+        {
+            Vector3 towardsTarget = (target.transform.position - transform.position).normalized;
+            Vector3 tangentToMotionCircle = Vector3.Cross(Vector3.up, towardsTarget); //counterclockwise
+            move = towardsTarget * Input.GetAxis("Vertical") + tangentToMotionCircle * Input.GetAxis("Horizontal");
+        }
+        else
+        {
+            
+            Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")).normalized;
+            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + camera.eulerAngles.y;
+            if(direction.magnitude > 0.1f)
+            {
+                move = (Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward).normalized;
+            }
+            else
+            {
+                move = new Vector3(0f, 0f, 0f);
+            }
+        }
+        
         controller.Move(move * Time.deltaTime * playerSpeed);
 
         animator.SetBool("Running", true);
@@ -97,11 +119,11 @@ public class Player : Destructible
         }
         if (move != Vector3.zero)
         {
-            gameObject.transform.forward = Vector3.Slerp(gameObject.transform.forward, move, Time.deltaTime*10);
+            gameObject.transform.forward = Vector3.Slerp(gameObject.transform.forward, move, Time.deltaTime*5);
         }
 
         //spin towards target if stationary (so you dont attack behind you lol)
-        if (move == Vector3.zero){
+        if (isTargeting && move == Vector3.zero){
             //gracefully stolen code (like 90% of this project tbh)
             Vector3 lookPos = target.transform.position - transform.position;
             lookPos.y = 0;
