@@ -36,6 +36,7 @@ public class InputAccessor : MonoBehaviour
     // ALL CALLS MADE TO tap(), press(), AND release() MUST BE MADE IN PreUpdate()
     public void tap(string input)
     {
+        if (!ins.ContainsKey(input)) { Debug.Log("Unrecognized Input"); return; }
         ins[input] = true;
         pressed[input] = true;
         released[input] = false;
@@ -44,6 +45,7 @@ public class InputAccessor : MonoBehaviour
 
     public void press(string input)
     {
+        if (!ins.ContainsKey(input)) { Debug.Log("Unrecognized Input"); return; }
         ins[input] = true;
         pressed[input] = true;
         released[input] = false;
@@ -51,6 +53,7 @@ public class InputAccessor : MonoBehaviour
 
     public void release(string input)
     {
+        if (!ins.ContainsKey(input)) { Debug.Log("Unrecognized Input"); return; }
         ins[input] = false;
         pressed[input] = false;
         released[input] = true;
