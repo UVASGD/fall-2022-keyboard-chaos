@@ -67,11 +67,24 @@ public class Player : Destructible
     [SerializeField]
     private TMP_Text textCooldownUnsurprising;
 
+    //Backstab = 4
+    public float backStabCD = 30;
+    public float lastBackStabCall = 0;
+    public int backStabDmg = 15;
+
+    [SerializeField]
+    private Image imageCooldownBackstab;
+
+    [SerializeField]
+    public TMP_Text textCooldownBackstab;
+
     // Start is called before the first frame update
     void Start()
     {
         controller = gameObject.GetComponent<CharacterController>();
         animator = gameObject.GetComponent<Animator>();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
@@ -158,6 +171,15 @@ public class Player : Destructible
             }
             textCooldownUnsurprising.gameObject.SetActive(true);
         }
+        //BackStab
+        if (lastBackStabCall >= backStabCD && Input.GetKey("4"))
+        {
+            lastBackStabCall = 0;
+            enemy.TakeDamage(backStabDmg);
+            transform.position = enemy.transform.position + Vector3.left;
+            transform.rotation = Quaternion.identity;
+            animator.SetTrigger("aa");
+        }
 
     }
 
@@ -166,12 +188,14 @@ public class Player : Destructible
         lastSliceCall += Time.fixedDeltaTime;
         lastDizzyCall += Time.fixedDeltaTime;
         lastUnsurprisingCall += Time.fixedDeltaTime;
+        lastBackStabCall += Time.fixedDeltaTime;
     }
 
     private void UIUpdate(){
         UICDImage(lastSliceCall, sliceCD, ref imageCooldownSlice, ref textCooldownSlice);
         UICDImage(lastDizzyCall, dizzyCD, ref imageCooldownDizzy, ref textCooldownDizzy);
         UICDImage(lastUnsurprisingCall, unsurprisingCD, ref imageCooldownUnsurprising, ref textCooldownUnsurprising);
+        UICDImage(lastBackStabCall, backStabCD, ref imageCooldownBackstab, ref textCooldownBackstab);
     }
 
     private void UICDImage(float lastCall, float CD, ref Image imageCooldown, ref TMP_Text textCooldown){
