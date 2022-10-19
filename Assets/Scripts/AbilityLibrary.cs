@@ -16,7 +16,9 @@ public class AbilityLibrary : MonoBehaviour
     [SerializeField] TMP_Text[] UItexts;
 
     Dictionary<string, Ability> abilites = new Dictionary<string, Ability>();
-    Ability slice, dizzy, unsurprisingSlash;        //might need to turn this into an array later if it gets out of control
+    Ability slice, dizzy, unsurprisingSlash, fireSpell;        //might need to turn this into an array later if it gets out of control
+
+    [SerializeField] GameObject defaultSpellBallPrefab;
 
     //TO ADD AN ABILITY
     //1. add the name to the line directly above this
@@ -38,12 +40,14 @@ public class AbilityLibrary : MonoBehaviour
         slice = new Ability("slice", player, 10, 10, "coolAttack");
         dizzy = new Ability("dizzy", player, 2, 20, "");
         unsurprisingSlash = new Ability("unsurprisingSlash", player, 1, 6, "aa");
+        fireSpell = new Ability("fireSpell", player, 0, 8, "aa");
 
 
         //add abilities to the abilities list
         addAbility(slice);
         addAbility(dizzy);
         addAbility(unsurprisingSlash);
+        addAbility(fireSpell);
 
     }
 
@@ -72,6 +76,14 @@ public class AbilityLibrary : MonoBehaviour
                 enemy.TakeDamage(unsurprisingSlash.damageToEnemy * 20);
                 animator.SetTrigger("coolAttack");
             }
+        }
+
+        //fireSpell
+        if (Input.GetKey("7") && fireSpell.useAbility(target))
+        {
+            GameObject tempSpellBall = Instantiate(defaultSpellBallPrefab, player.transform.position + new Vector3(1,2,0), player.transform.rotation);
+            tempSpellBall.GetComponent<Rigidbody>().velocity = transform.forward * 10;
+
         }
 
         //Other stuff
