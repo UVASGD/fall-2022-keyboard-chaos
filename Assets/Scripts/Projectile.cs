@@ -6,6 +6,10 @@ public class Projectile : MonoBehaviour
 {
 
     [SerializeField] float damage = 0;
+    [SerializeField] float timeToDisappear = 0;
+
+    private bool created = false;
+    private float timeOfCreation;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -14,7 +18,27 @@ public class Projectile : MonoBehaviour
         if (d != null)
         {
             d.TakeDamage(damage);
-            Destroy(gameObject);
         }
+        destroy();
+    }
+
+    private void Update()
+    {
+        if (!created)
+        {
+            created = true;
+            timeOfCreation = Time.realtimeSinceStartup;
+        }
+
+        if (Time.realtimeSinceStartup-timeOfCreation > timeToDisappear)
+        {
+            destroy();
+        }
+    }
+
+    private void destroy()
+    {
+        //animator.playanimation("destroy")?????
+        Destroy(gameObject);
     }
 }

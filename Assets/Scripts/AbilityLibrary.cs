@@ -40,7 +40,7 @@ public class AbilityLibrary : MonoBehaviour
         slice = new Ability("slice", player, 10, 10, "coolAttack");
         dizzy = new Ability("dizzy", player, 2, 20, "");
         unsurprisingSlash = new Ability("unsurprisingSlash", player, 1, 6, "aa");
-        fireSpell = new Ability("fireSpell", player, 0, 8, "aa");
+        fireSpell = new Ability("fireSpell", player, 0, 3, "aa");
 
 
         //add abilities to the abilities list

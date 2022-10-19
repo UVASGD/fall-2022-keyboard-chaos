@@ -130,6 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
+  timeToDisappear: 5
 --- !u!1 &8052963373325870254
 GameObject:
   m_ObjectHideFlags: 0
