@@ -81,7 +81,7 @@ public class AbilityLibrary : MonoBehaviour
         //fireSpell
         if (Input.GetKey("7") && fireSpell.useAbility(target))
         {
-            GameObject tempSpellBall = Instantiate(defaultSpellBallPrefab, player.transform.position + new Vector3(1,2,0), player.transform.rotation);
+            GameObject tempSpellBall = Instantiate(defaultSpellBallPrefab, player.transform.position + transform.forward + transform.up, player.transform.rotation);
             tempSpellBall.GetComponent<Rigidbody>().velocity = transform.forward * 10;
 
         }

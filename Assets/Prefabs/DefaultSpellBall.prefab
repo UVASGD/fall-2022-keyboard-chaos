@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8052963373463551418}
   - component: {fileID: 8052963373463551419}
   - component: {fileID: 6863448506395221576}
+  - component: {fileID: 2632932442105225007}
   m_Layer: 0
   m_Name: DefaultSpellBall
   m_TagString: Untagged
@@ -116,6 +117,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2632932442105225007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1868894663109105365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba040e9e020fb418ea5b88bb0a2393b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
 --- !u!1 &8052963373325870254
 GameObject:
   m_ObjectHideFlags: 0
