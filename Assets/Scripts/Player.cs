@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Cinemachine;
 
 public class Player : Destructible
 {
@@ -25,7 +26,8 @@ public class Player : Destructible
     public GameObject target; //TODO, be able to swap target (also extend this same target to PlayerCamera.cs)
     public bool isTargeting = true;
 
-    public Transform camera;
+    private Transform camera;
+    public CinemachineVirtualCamera lockOnCamera;
 
     //Abilities
     //TO ADD NEW: 
@@ -73,6 +75,7 @@ public class Player : Destructible
     // Start is called before the first frame update
     void Start()
     {
+        camera = Camera.main.gameObject.transform;
         controller = gameObject.GetComponent<CharacterController>();
         animator = gameObject.GetComponent<Animator>();
     }
@@ -140,6 +143,20 @@ public class Player : Destructible
 
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            if(isTargeting)
+            {
+                isTargeting = false;
+                lockOnCamera.Priority = 1;
+            }
+            else
+            {
+                isTargeting = true;
+                lockOnCamera.Priority = 10;
+            }
+        }
     }
     // Fixed Update is called on a consistant basis
     void FixedUpdate(){
