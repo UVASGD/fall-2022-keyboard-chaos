@@ -24,12 +24,16 @@ public class Ability
         this.player = player;
         this.damageToEnemy = damageToEnemy;
         this.coolDown = coolDown;
+        this.triggerName = triggerName;
         animator = player.GetComponent<Animator>();
     }
 
-    public bool useAbility(Destructible target)
+    public bool tryUseAbility(Destructible target)
     {
-        //check to see if the effect has cooled down
+        //check to see if the ability is unlocked
+        if (!unlocked) return false;
+
+        //check to see if the ability has cooled down
         if (Time.realtimeSinceStartupAsDouble - timeOfLastUse < coolDown) return false;
 
         //do the ability 
@@ -49,6 +53,11 @@ public class Ability
     public void lockAbility()
     {
         unlocked = false;
+    }
+
+    public bool isUnlocked()
+    {
+        return unlocked;
     }
 
     public float timeSinceLastUse()

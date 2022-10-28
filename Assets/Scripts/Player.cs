@@ -64,7 +64,7 @@ public class Player : Destructible
             Vector3 lookPos = target.transform.position - transform.position;
             lookPos.y = 0;
             Quaternion rotation = Quaternion.LookRotation(lookPos);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 5); //this 2 just makes it spin a lil faster
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 2); //this 2 just makes it spin a lil faster
             //transform.rotation = Quaternion.LookRotation(Vector3.Lerp(transform.rotation.eulerAngles, target.transform.position - transform.position, Time.deltaTime));
         }
 

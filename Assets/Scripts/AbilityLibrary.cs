@@ -6,19 +6,22 @@ using UnityEngine.UI;
 
 public class AbilityLibrary : MonoBehaviour
 {
-
+    //variables for the class structure, please DO NOT add anything here
     private GameObject player;
     private Animator animator;
-    [SerializeField] Destructible target;   //ned to generalize, see the thing below
+    [SerializeField] Destructible target;   //need to generalize, see the thing below
 
     [SerializeField] string[] names;
     [SerializeField] Image[] UIimages;
     [SerializeField] TMP_Text[] UItexts;
 
     Dictionary<string, Ability> abilites = new Dictionary<string, Ability>();
-    Ability slice, dizzy, unsurprisingSlash, fireSpell;        //might need to turn this into an array later if it gets out of control
+
+    //you can add things below, please DO NOT add anything above
+    Ability slice, dizzy, unsurprisingSlash, fireSpell, defaultAttack;        //might need to turn this into an array later if it gets out of control
 
     [SerializeField] GameObject defaultSpellBallPrefab;
+    double meleeRange = 4;
 
     //TO ADD AN ABILITY
     //1. add the name to the line directly above this
@@ -41,13 +44,17 @@ public class AbilityLibrary : MonoBehaviour
         dizzy = new Ability("dizzy", player, 2, 20, "");
         unsurprisingSlash = new Ability("unsurprisingSlash", player, 1, 6, "aa");
         fireSpell = new Ability("fireSpell", player, 0, 3, "aa");
+        defaultAttack = new Ability("defaultAttack", player, 4, 5, "coolAttack");
 
 
-        //add abilities to the abilities list
+        //add abilities to the abilities list (with UI)
         addAbility(slice);
         addAbility(dizzy);
         addAbility(unsurprisingSlash);
         addAbility(fireSpell);
+
+        //add abilities to the abilities list (without UI)
+        addAbility(defaultAttack);
 
     }
 
@@ -59,17 +66,16 @@ public class AbilityLibrary : MonoBehaviour
         //actually in order to get this to be more general to other enemies/multiple enimies/hitboxes/effects/special damage, I think the ability might just store the cooldown and everything else can be done in the if, we'll see
 
         //slice
-        if (Input.GetKey("1") && slice.useAbility(target)) { }
+        if (Input.GetKey("1") && slice.tryUseAbility(target)) { }
 
         //dizzy
-        if (Input.GetKey("2") && dizzy.useAbility(target))
+        if (Input.GetKey("2") && dizzy.tryUseAbility(target))
         {
             enemy.MakeDizzy();
         }
 
         //unsurprising
-        if (Input.GetKey("3") && Vector3.Distance(transform.position, target.gameObject.transform.position) <= 4
-            && unsurprisingSlash.useAbility(target))
+        if (Input.GetKey("3") && inRange(meleeRange) && unsurprisingSlash.tryUseAbility(target))
         {
             if (enemy.isDizzy)
             {
@@ -79,15 +85,24 @@ public class AbilityLibrary : MonoBehaviour
         }
 
         //fireSpell
-        if (Input.GetKey("7") && fireSpell.useAbility(target))
+        if (Input.GetKey("7") && fireSpell.tryUseAbility(target))
         {
             GameObject tempSpellBall = Instantiate(defaultSpellBallPrefab, player.transform.position + transform.forward + transform.up, player.transform.rotation);
             tempSpellBall.GetComponent<Rigidbody>().velocity = transform.forward * 10;
 
         }
 
+        //defaultAttack
+        if (inRange(meleeRange) && defaultAttack.tryUseAbility(target)) { }
+
         //Other stuff
         UIUpdate();
+    }
+
+    //methods for making ability if statements easier
+    private bool inRange(double range)
+    {
+        return Vector3.Distance(transform.position, target.gameObject.transform.position) <= range;
     }
 
 
