@@ -1466,33 +1466,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98a26aa076ac8fc4794d771c49c15d23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
-  hitPoints: 0
+  maxHealth: 100
+  hitPoints: 100
   alive: 0
   healthBar: {fileID: 0}
   animator: {fileID: 0}
   player: {fileID: 0}
   playerSpeed: 4
   jumpHeight: 1
-  autoDmg: 5
-  autoSwingTimer: 4
-  swingRange: 4
   target: {fileID: 0}
-  sliceCD: 10
-  lastSliceCall: 0
-  sliceDmg: 10
-  imageCooldownSlice: {fileID: 0}
-  textCooldownSlice: {fileID: 0}
-  dizzyCD: 20
-  lastDizzyCall: 0
-  dizzyDmg: 2
-  imageCooldownDizzy: {fileID: 0}
-  textCooldownDizzy: {fileID: 0}
-  unsurprisingCD: 6
-  lastUnsurprisingCall: 0
-  unsurprisingDmg: 1
-  imageCooldownUnsurprising: {fileID: 0}
-  textCooldownUnsurprising: {fileID: 0}
 --- !u!114 &5694076441556909912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1505,7 +1487,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638d350874a984d98bc192268d218cde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  target: {fileID: 0}
+  names: []
+  UIimages: []
+  UItexts: []
+  defaultSpellBallPrefab: {fileID: 0}
 --- !u!1 &2365602016985692406
 GameObject:
   m_ObjectHideFlags: 0

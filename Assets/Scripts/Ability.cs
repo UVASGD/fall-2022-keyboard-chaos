@@ -37,7 +37,7 @@ public class Ability
         if (Time.realtimeSinceStartupAsDouble - timeOfLastUse < coolDown) return false;
 
         //do the ability 
-        target.GetComponent<Enemy>().TakeDamage(damageToEnemy);
+        target.GetComponent<Destructible>().TakeDamage(damageToEnemy);
         if (triggerName != "") animator.SetTrigger(triggerName);
 
         //reset the cooldown
