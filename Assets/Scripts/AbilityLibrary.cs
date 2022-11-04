@@ -10,6 +10,8 @@ public class AbilityLibrary : MonoBehaviour
     private GameObject player;
     private Animator animator;
     [SerializeField] Destructible target;   //need to generalize, see the thing below
+    private Player playerMovement;
+    private GameObject cameraTarget;
 
     [SerializeField] string[] names;
     [SerializeField] Image[] UIimages;
@@ -35,6 +37,8 @@ public class AbilityLibrary : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerMovement = GetComponent<Player>();
+        target = playerMovement.target;
         player = gameObject;
         animator = player.GetComponent<Animator>();
         if (UIimages.Length != UItexts.Length) { Debug.Log("Ability UI array length mismatch"); }
@@ -61,7 +65,7 @@ public class AbilityLibrary : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        target = playerMovement.target;
         Enemy enemy = target.GetComponent<Enemy>(); //hopefully this whole target and enemy thing can be generalized, I will get to this later though
         //actually in order to get this to be more general to other enemies/multiple enimies/hitboxes/effects/special damage, I think the ability might just store the cooldown and everything else can be done in the if, we'll see
 
