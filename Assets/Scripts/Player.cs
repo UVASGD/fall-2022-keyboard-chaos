@@ -36,6 +36,18 @@ public class Player : Destructible
     // Start is called before the first frame update
     void Start()
     {
+        possibleTargets = FindObjectsOfType<Destructible>();
+        if (target == null)
+        {
+            if(possibleTargets[0].gameObject == gameObject)
+            {
+                target = possibleTargets[1];
+            }
+            else
+            {
+                target = possibleTargets[0];
+            }
+        }
         Cursor.lockState = CursorLockMode.Locked;
         camera = Camera.main.gameObject.transform;
         controller = gameObject.GetComponent<CharacterController>();
@@ -43,11 +55,6 @@ public class Player : Destructible
         //set up targeting arrow UI
         targetingArrow = GameObject.Instantiate(targetingArrowPrefab).GetComponent<targetingArrow>();
         targetingArrow.target = target.gameObject;
-        possibleTargets = FindObjectsOfType<Destructible>();
-        if(target == null)
-        {
-            target = possibleTargets[0];
-        }
         player = gameObject;
         controller = gameObject.GetComponent<CharacterController>();
         animator = gameObject.GetComponent<Animator>();
