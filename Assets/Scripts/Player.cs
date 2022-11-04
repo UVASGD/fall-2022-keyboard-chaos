@@ -29,6 +29,11 @@ public class Player : Destructible
     private Transform camera;
     public CinemachineVirtualCamera lockOnCamera;
 
+    public GameObject targetingArrowPrefab;
+    private targetingArrow targetingArrow;
+
+    private Destructible[] possibleTargets;
+
     //Abilities
     //TO ADD NEW: 
     //  Make sure that your button isn't already covered
@@ -75,9 +80,14 @@ public class Player : Destructible
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         camera = Camera.main.gameObject.transform;
         controller = gameObject.GetComponent<CharacterController>();
         animator = gameObject.GetComponent<Animator>();
+        //set up targeting arrow UI
+        targetingArrow = GameObject.Instantiate(targetingArrowPrefab).GetComponent<targetingArrow>();
+        targetingArrow.target = target;
+        possibleTargets = FindObjectsOfType<Destructible>();
     }
 
     // Update is called once per frame
@@ -144,18 +154,42 @@ public class Player : Destructible
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
 
+        // If left shift is pressed, toggle between being locked on or not
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             if(isTargeting)
             {
                 isTargeting = false;
-                lockOnCamera.Priority = 1;
             }
             else
             {
                 isTargeting = true;
-                lockOnCamera.Priority = 10;
             }
+        }
+        // set up camera and targeting arrow UI depending on if you're locked on right now
+        if (isTargeting)
+        {
+            //if currenty locked on, use the lock-on camera and make sure the targeting arrow knows to follow the enemy
+            lockOnCamera.Priority = 10;
+            targetingArrow.targeting = true;
+            targetingArrow.target = target;
+        }
+        else
+        {
+            // check to see if we should change who to target (always target closest destructible thing when not currently locked on)
+            float minDist = Vector3.Distance(transform.position, target.transform.position);
+            foreach (Destructible obj in possibleTargets)
+            {
+                if (obj.gameObject != this.gameObject && Vector3.Distance(transform.position, obj.gameObject.transform.position) < minDist)
+                {
+                    target = obj.gameObject;
+                    minDist = Vector3.Distance(transform.position, target.transform.position);
+                }
+            }
+            // ensure the free look camera is active, and move the targeting arrow to the right place
+            lockOnCamera.Priority = 1;
+            targetingArrow.targeting = false;
+            targetingArrow.target = target;
         }
     }
     // Fixed Update is called on a consistant basis
