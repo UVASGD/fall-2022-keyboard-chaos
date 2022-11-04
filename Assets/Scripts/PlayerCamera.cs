@@ -16,7 +16,7 @@ public class PlayerCamera : MonoBehaviour
     {
         if (player.isTargeting)
         {
-            transform.LookAt(player.target.transform);
+            transform.LookAt(player.target.gameObject.transform);
         }
         else
         {

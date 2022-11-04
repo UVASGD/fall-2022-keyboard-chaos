@@ -1444,6 +1444,7 @@ GameObject:
   - component: {fileID: 6066470433976387119}
   - component: {fileID: 6066470433976387116}
   - component: {fileID: 6066470433976387117}
+  - component: {fileID: 5694076441556909912}
   m_Layer: 0
   m_Name: DogPBR
   m_TagString: Untagged
@@ -1539,6 +1540,8 @@ MonoBehaviour:
   hitPoints: 0
   alive: 0
   healthBar: {fileID: 0}
+  animator: {fileID: 0}
+  player: {fileID: 0}
   playerSpeed: 4
   jumpHeight: 1
   autoDmg: 5
@@ -1563,6 +1566,19 @@ MonoBehaviour:
   unsurprisingDmg: 1
   imageCooldownUnsurprising: {fileID: 0}
   textCooldownUnsurprising: {fileID: 0}
+--- !u!114 &5694076441556909912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2365602016985692404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638d350874a984d98bc192268d218cde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
 --- !u!1 &2365602016985692406
 GameObject:
   m_ObjectHideFlags: 0
