@@ -12,6 +12,7 @@ public class AbilityLibrary : MonoBehaviour
     [SerializeField] Destructible target;   //need to generalize, see the thing below
     private Player playerMovement;
     private GameObject cameraTarget;
+    [SerializeField] GameObject hitboxPrefab;
 
     [SerializeField] string[] names;
     [SerializeField] Image[] UIimages;
@@ -70,17 +71,22 @@ public class AbilityLibrary : MonoBehaviour
         //actually in order to get this to be more general to other enemies/multiple enimies/hitboxes/effects/special damage, I think the ability might just store the cooldown and everything else can be done in the if, we'll see
 
         //slice
-        if (Input.GetKey("1") && slice.tryUseAbility(target)) { }
+        if (Input.GetKey("1") && slice.isCoolAndUnlocked())
+        {
+            slice.useAbility(target);
+        }
 
         //dizzy
-        if (Input.GetKey("2") && dizzy.tryUseAbility(target))
+        if (Input.GetKey("2") && dizzy.isCoolAndUnlocked())
         {
+            dizzy.useAbility(target);
             enemy.MakeDizzy();
         }
 
         //unsurprising
-        if (Input.GetKey("3") && inRange(meleeRange) && unsurprisingSlash.tryUseAbility(target))
+        if (Input.GetKey("3") && inRange(meleeRange) && unsurprisingSlash.isCoolAndUnlocked())
         {
+            unsurprisingSlash.useAbility(target);
             if (enemy.isDizzy)
             {
                 enemy.TakeDamage(unsurprisingSlash.damageToEnemy * 20);
@@ -89,15 +95,16 @@ public class AbilityLibrary : MonoBehaviour
         }
 
         //fireSpell
-        if (Input.GetKey("7") && fireSpell.tryUseAbility(target))
+        if (Input.GetKey("7") && fireSpell.isCoolAndUnlocked())
         {
+            fireSpell.resetCooldown();
             GameObject tempSpellBall = Instantiate(defaultSpellBallPrefab, player.transform.position + transform.forward + transform.up, player.transform.rotation);
             tempSpellBall.GetComponent<Rigidbody>().velocity = transform.forward * 10;
 
         }
 
         //defaultAttack
-        if (inRange(meleeRange) && defaultAttack.tryUseAbility(target)) { }
+        if (inRange(meleeRange) && defaultAttack.isCoolAndUnlocked()) { }
 
         //Other stuff
         UIUpdate();
@@ -107,6 +114,28 @@ public class AbilityLibrary : MonoBehaviour
     private bool inRange(double range)
     {
         return Vector3.Distance(transform.position, target.gameObject.transform.position) <= range;
+    }
+
+    private Destructible[] gameObjectsInHitbox(Vector3 center, Vector3 dims)
+    {
+        Collider[] x = Physics.OverlapBox(center, dims / 2);
+        Destructible[] destructibles = new Destructible[x.Length];
+        int i = 0;
+        foreach (Collider c in x)
+        {
+            if (c.gameObject.GetComponent<Destructible>() != null)
+            {
+                destructibles[i] = c.gameObject.GetComponent<Destructible>();
+                i++;
+            }
+        }
+        if (i == 0) return null;
+        Destructible[] temp = new Destructible[i];
+        for (int j = 0; j < i; j++)
+        {
+            temp[j] = destructibles[j];
+        }
+        return temp;
     }
 
 

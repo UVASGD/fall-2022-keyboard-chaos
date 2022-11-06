@@ -28,21 +28,38 @@ public class Ability
         animator = player.GetComponent<Animator>();
     }
 
-    public bool tryUseAbility(Destructible target)
+    public void useAbility(Destructible target)
     {
-        //check to see if the ability is unlocked
-        if (!unlocked) return false;
-
-        //check to see if the ability has cooled down
-        if (Time.realtimeSinceStartupAsDouble - timeOfLastUse < coolDown) return false;
-
-        //do the ability 
+        //do the ability
         target.GetComponent<Enemy>().TakeDamage(damageToEnemy);
         if (triggerName != "") animator.SetTrigger(triggerName);
 
         //reset the cooldown
         timeOfLastUse = Time.realtimeSinceStartup;
-        return true;
+    }
+
+    public void useAbility(Destructible[] targets)
+    {
+        //do the ability
+        foreach (Destructible t in targets)
+        {
+            t.GetComponent<Enemy>().TakeDamage(damageToEnemy);
+        }
+
+        if (triggerName != "") animator.SetTrigger(triggerName);
+
+        //reset the cooldown
+        timeOfLastUse = Time.realtimeSinceStartup;
+    }
+
+    public void resetCooldown()
+    {
+        timeOfLastUse = Time.realtimeSinceStartup;
+    }
+
+    public bool isCoolAndUnlocked()
+    {
+        return unlocked && Time.realtimeSinceStartupAsDouble - timeOfLastUse > coolDown;
     }
 
     public void unlockAbility()
