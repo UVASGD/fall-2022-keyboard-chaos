@@ -70,7 +70,7 @@ public class AbilityLibrary : MonoBehaviour
         //actually in order to get this to be more general to other enemies/multiple enimies/hitboxes/effects/special damage, I think the ability might just store the cooldown and everything else can be done in the if, we'll see
 
         //slice
-        if (Input.GetKey("1") && slice.tryUseAbility(target)) { }
+        if (Input.GetKey("1") && inRange(meleeRange) && slice.tryUseAbility(target)) { }
 
         //dizzy
         if (Input.GetKey("2") && dizzy.tryUseAbility(target))
