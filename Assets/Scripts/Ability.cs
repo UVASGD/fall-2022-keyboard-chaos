@@ -45,6 +45,15 @@ public class Ability
         return true;
     }
 
+    public bool checkAbility(){
+        //check to see if the ability is unlocked
+        if (!unlocked) return false;
+
+        //check to see if the ability has cooled down
+        return !(Time.realtimeSinceStartupAsDouble - timeOfLastUse < coolDown);
+
+    }
+
     public void unlockAbility()
     {
         unlocked = true;

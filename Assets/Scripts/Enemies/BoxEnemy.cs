@@ -15,19 +15,23 @@ public class BoxEnemy : Enemy
         hitPoints = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         alive = true;
-        slash = new Ability("slash", gameObject, 30, 5, "attack2");
-        flatten = new Ability("flatten", gameObject, 15, 4, "attack1");
+        slash = new Ability("slash", gameObject, 10, 8, "attack2");
+        flatten = new Ability("flatten", gameObject, 3, 2, "attack1");
         
         //this makes it so abilities aren't  cast back to back
-        buffer = new Ability("buffer", gameObject, 0, 2, "");
+        buffer = new Ability("buffer", gameObject, 0, 3, "");
     }
 
     // Update is called once per frame
     void Update()
     {
         //idk how else to just do this condition lol
-        if(alive && !isDizzy && slash.tryUseAbility(player) && buffer.tryUseAbility(player));
-        if(alive && !isDizzy && flatten.tryUseAbility(player) && buffer.tryUseAbility(player));
+        if(alive && !isDizzy && slash.checkAbility() && buffer.tryUseAbility(player)){
+            slash.tryUseAbility(player);
+        }
+        else if(alive && !isDizzy && flatten.checkAbility() && buffer.tryUseAbility(player)){
+            flatten.tryUseAbility(player);
+        }
     }
 
     public override void Die(){
