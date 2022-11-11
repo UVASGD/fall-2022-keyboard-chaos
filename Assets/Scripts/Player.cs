@@ -36,6 +36,9 @@ public class Player : Destructible
     // Start is called before the first frame update
     void Start()
     {
+        alive = true;
+        healthBar.SetMaxHealth(maxHealth);
+
         possibleTargets = FindObjectsOfType<Destructible>();
         if (target == null)
         {
@@ -63,6 +66,9 @@ public class Player : Destructible
     // Update is called once per frame
     void Update()
     {
+        if(!alive){
+            return;
+        }
         //movement
         groundedPlayer = controller.isGrounded;
         if (groundedPlayer && playerVelocity.y < 0)
@@ -162,6 +168,11 @@ public class Player : Destructible
             targetingArrow.targeting = false;
             targetingArrow.target = target.gameObject;
         }
+    }
+
+public override void Die(){
+        alive = false;
+        animator.SetTrigger("die");
     }
 
 }

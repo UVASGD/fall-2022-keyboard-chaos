@@ -944,14 +944,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 4991842803490413520}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dde955882a1533442907c1b885b050eb, type: 3}
+  m_Script: {fileID: 11500000, guid: 5fabc287ef59c7043bc68863b45cdbab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
   hitPoints: 100
-  alive: 0
+  alive: 1
   healthBar: {fileID: 0}
   isDizzy: 0
+  player: {fileID: 0}
 --- !u!1 &4991980479919373150
 GameObject:
   m_ObjectHideFlags: 0

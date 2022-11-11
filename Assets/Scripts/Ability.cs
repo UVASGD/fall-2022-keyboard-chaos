@@ -37,12 +37,21 @@ public class Ability
         if (Time.realtimeSinceStartupAsDouble - timeOfLastUse < coolDown) return false;
 
         //do the ability 
-        target.GetComponent<Enemy>().TakeDamage(damageToEnemy);
+        target.GetComponent<Destructible>().TakeDamage(damageToEnemy);
         if (triggerName != "") animator.SetTrigger(triggerName);
 
         //reset the cooldown
         timeOfLastUse = Time.realtimeSinceStartup;
         return true;
+    }
+
+    public bool checkAbility(){
+        //check to see if the ability is unlocked
+        if (!unlocked) return false;
+
+        //check to see if the ability has cooled down
+        return !(Time.realtimeSinceStartupAsDouble - timeOfLastUse < coolDown);
+
     }
 
     public void unlockAbility()
