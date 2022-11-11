@@ -6,10 +6,12 @@ using UnityEngine.UI;
 
 public class AbilityLibrary : MonoBehaviour
 {
-
+    //variables for the class structure, please DO NOT add anything here
     private GameObject player;
     private Animator animator;
-    [SerializeField] Destructible target;   //ned to generalize, see the thing below
+    [SerializeField] Destructible target;   //need to generalize, see the thing below
+    private Player playerMovement;
+    private GameObject cameraTarget;
 
     [SerializeField] string[] names;
     [SerializeField] Image[] UIimages;
@@ -19,6 +21,11 @@ public class AbilityLibrary : MonoBehaviour
     Ability slice, dizzy, unsurprisingSlash, fireSpell, poisonSpell;        //might need to turn this into an array later if it gets out of control
 
     [SerializeField] GameObject defaultSpellBallPrefab, poisonAttachment;
+    //you can add things below, please DO NOT add anything above
+    Ability slice, dizzy, unsurprisingSlash, fireSpell, defaultAttack;        //might need to turn this into an array later if it gets out of control
+
+    [SerializeField] GameObject defaultSpellBallPrefab;
+    double meleeRange = 4;
 
     //TO ADD AN ABILITY
     //1. add the name to the line directly above this
@@ -32,6 +39,8 @@ public class AbilityLibrary : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerMovement = GetComponent<Player>();
+        target = playerMovement.target;
         player = gameObject;
         animator = player.GetComponent<Animator>();
         if (UIimages.Length != UItexts.Length) { Debug.Log("Ability UI array length mismatch"); }
@@ -42,35 +51,39 @@ public class AbilityLibrary : MonoBehaviour
         unsurprisingSlash = new Ability("unsurprisingSlash", player, 1, 6, "aa");
         fireSpell = new Ability("fireSpell", player, 0, 3, "aa");
         poisonSpell = new Ability("poisonSpell", player, 0, 1, "poison");
+        defaultAttack = new Ability("defaultAttack", player, 4, 5, "coolAttack");
 
 
-        //add abilities to the abilities list
+        //add abilities to the abilities list (with UI)
         addAbility(slice);
         addAbility(dizzy);
         addAbility(unsurprisingSlash);
         addAbility(fireSpell);
         addAbility(poisonSpell);
+
+        //add abilities to the abilities list (without UI)
+        addAbility(defaultAttack);
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        target = playerMovement.target;
         Enemy enemy = target.GetComponent<Enemy>(); //hopefully this whole target and enemy thing can be generalized, I will get to this later though
         //actually in order to get this to be more general to other enemies/multiple enimies/hitboxes/effects/special damage, I think the ability might just store the cooldown and everything else can be done in the if, we'll see
 
         //slice
-        if (Input.GetKey("1") && slice.useAbility(target)) { }
+        if (Input.GetKey("1") && slice.tryUseAbility(target)) { }
 
         //dizzy
-        if (Input.GetKey("2") && dizzy.useAbility(target))
+        if (Input.GetKey("2") && dizzy.tryUseAbility(target))
         {
             enemy.MakeDizzy();
         }
 
         //unsurprising
-        if (Input.GetKey("3") && Vector3.Distance(transform.position, target.gameObject.transform.position) <= 4
-            && unsurprisingSlash.useAbility(target))
+        if (Input.GetKey("3") && inRange(meleeRange) && unsurprisingSlash.tryUseAbility(target))
         {
             if (enemy.isDizzy)
             {
@@ -80,7 +93,7 @@ public class AbilityLibrary : MonoBehaviour
         }
 
         //fireSpell
-        if (Input.GetKey("7") && fireSpell.useAbility(target))
+        if (Input.GetKey("7") && fireSpell.tryUseAbility(target))
         {
             GameObject tempSpellBall = Instantiate(defaultSpellBallPrefab, player.transform.position + transform.forward + transform.up, player.transform.rotation);
             tempSpellBall.GetComponent<Rigidbody>().velocity = transform.forward * 10;
@@ -92,9 +105,17 @@ public class AbilityLibrary : MonoBehaviour
             DamageOverTime poisonAttach = Instantiate(poisonAttachment, target.transform).GetComponent<DamageOverTime>();
             poisonAttach.ApplyDamageEffect(3, 4, 1);
         }
+        //defaultAttack
+        if (inRange(meleeRange) && defaultAttack.tryUseAbility(target)) { }
 
         //Other stuff
         UIUpdate();
+    }
+
+    //methods for making ability if statements easier
+    private bool inRange(double range)
+    {
+        return Vector3.Distance(transform.position, target.gameObject.transform.position) <= range;
     }
 
 
