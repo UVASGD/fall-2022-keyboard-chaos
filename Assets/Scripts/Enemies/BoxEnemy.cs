@@ -8,6 +8,8 @@ public class BoxEnemy : Enemy
     public Player player;
     Ability slash, flatten, buffer;
 
+    float range;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +17,7 @@ public class BoxEnemy : Enemy
         hitPoints = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         alive = true;
+        range = 4;
         slash = new Ability("slash", gameObject, 10, 8, "attack2");
         flatten = new Ability("flatten", gameObject, 3, 2, "attack1");
         
@@ -25,11 +28,12 @@ public class BoxEnemy : Enemy
     // Update is called once per frame
     void Update()
     {
+        bool inRange = Vector3.Distance(transform.position, player.gameObject.transform.position) <= range;
         //idk how else to just do this condition lol
-        if(alive && !isDizzy && slash.checkAbility() && buffer.tryUseAbility(player)){
+        if(alive && !isDizzy && inRange && slash.checkAbility() && buffer.tryUseAbility(player)){
             slash.tryUseAbility(player);
         }
-        else if(alive && !isDizzy && flatten.checkAbility() && buffer.tryUseAbility(player)){
+        else if(alive && !isDizzy && inRange && flatten.checkAbility() && buffer.tryUseAbility(player)){
             flatten.tryUseAbility(player);
         }
     }
