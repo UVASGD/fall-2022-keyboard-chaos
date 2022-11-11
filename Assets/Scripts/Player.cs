@@ -24,6 +24,7 @@ public class Player : Destructible
     // Start is called before the first frame update
     void Start()
     {
+        alive = true;
         healthBar.SetMaxHealth(maxHealth);
         player = gameObject;
         controller = gameObject.GetComponent<CharacterController>();
@@ -34,6 +35,9 @@ public class Player : Destructible
     // Update is called once per frame
     void Update()
     {
+        if(!alive){
+            return;
+        }
         //movement
         groundedPlayer = controller.isGrounded;
         if (groundedPlayer && playerVelocity.y < 0)
@@ -77,6 +81,11 @@ public class Player : Destructible
 
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
+    }
+
+public override void Die(){
+        alive = false;
+        animator.SetTrigger("die");
     }
 
 }

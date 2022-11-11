@@ -952,6 +952,7 @@ MonoBehaviour:
   alive: 1
   healthBar: {fileID: 0}
   isDizzy: 0
+  player: {fileID: 0}
 --- !u!1 &4991980479919373150
 GameObject:
   m_ObjectHideFlags: 0

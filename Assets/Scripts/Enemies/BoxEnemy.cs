@@ -5,7 +5,8 @@ using UnityEngine;
 public class BoxEnemy : Enemy
 {
     Animator animator;
-    Player player;
+    public Player player;
+    Ability slash, flatten, buffer;
 
     // Start is called before the first frame update
     void Start()
@@ -14,15 +15,19 @@ public class BoxEnemy : Enemy
         hitPoints = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         alive = true;
+        slash = new Ability("slash", gameObject, 30, 5, "attack2");
+        flatten = new Ability("flatten", gameObject, 15, 4, "attack1");
+        
+        //this makes it so abilities aren't  cast back to back
+        buffer = new Ability("buffer", gameObject, 0, 2, "");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(alive & !isDizzy){
-            pass;
-            // TODO get ability stuff working
-        }
+        //idk how else to just do this condition lol
+        if(alive && !isDizzy && slash.tryUseAbility(player) && buffer.tryUseAbility(player));
+        if(alive && !isDizzy && flatten.tryUseAbility(player) && buffer.tryUseAbility(player));
     }
 
     public override void Die(){
@@ -30,8 +35,7 @@ public class BoxEnemy : Enemy
         animator.SetTrigger("die");
     }
 
-    public override void TakeDamage(float amount)
-    {
+    public override void TakeDamage(float amount){
         this.hitPoints -= amount; //not sure why I'm using "this" but this code works lmao
         animator.SetTrigger("getHit");
         if(healthBar){
