@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2003931976}
-  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1603,6 +1603,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4994852769436304404, guid: 0a93a55f792bb0040b411ad449f17db6, type: 3}
   m_PrefabInstance: {fileID: 4990431461327099935}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4744220941573132 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4990431460299476548, guid: 0a93a55f792bb0040b411ad449f17db6, type: 3}
+  m_PrefabInstance: {fileID: 4990431461327099935}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1975194071008207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dde955882a1533442907c1b885b050eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4990431461327099935
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1719,6 +1730,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5694076441556909912, guid: dbc1a7416f9d1724c8ae419bdc37decf, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 4744220941573132}
+    - target: {fileID: 5694076441556909912, guid: dbc1a7416f9d1724c8ae419bdc37decf, type: 3}
+      propertyPath: poisonAttachment
+      value: 
+      objectReference: {fileID: 6303814759132016299, guid: 2256d95d8d9223941bc0fd94a38475b5, type: 3}
+    - target: {fileID: 5694076441556909912, guid: dbc1a7416f9d1724c8ae419bdc37decf, type: 3}
+      propertyPath: defaultSpellBallPrefab
+      value: 
+      objectReference: {fileID: 1868894663109105365, guid: a3c8c44d4794f4cb69ed3976c5b87ea9, type: 3}
     - target: {fileID: 6066470433598646764, guid: dbc1a7416f9d1724c8ae419bdc37decf, type: 3}
       propertyPath: target
       value: 

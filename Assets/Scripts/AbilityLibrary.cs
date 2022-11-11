@@ -16,9 +16,9 @@ public class AbilityLibrary : MonoBehaviour
     [SerializeField] TMP_Text[] UItexts;
 
     Dictionary<string, Ability> abilites = new Dictionary<string, Ability>();
-    Ability slice, dizzy, unsurprisingSlash, fireSpell;        //might need to turn this into an array later if it gets out of control
+    Ability slice, dizzy, unsurprisingSlash, fireSpell, poisonSpell;        //might need to turn this into an array later if it gets out of control
 
-    [SerializeField] GameObject defaultSpellBallPrefab;
+    [SerializeField] GameObject defaultSpellBallPrefab, poisonAttachment;
 
     //TO ADD AN ABILITY
     //1. add the name to the line directly above this
@@ -41,6 +41,7 @@ public class AbilityLibrary : MonoBehaviour
         dizzy = new Ability("dizzy", player, 2, 20, "");
         unsurprisingSlash = new Ability("unsurprisingSlash", player, 1, 6, "aa");
         fireSpell = new Ability("fireSpell", player, 0, 3, "aa");
+        poisonSpell = new Ability("poisonSpell", player, 0, 1, "poison");
 
 
         //add abilities to the abilities list
@@ -48,7 +49,7 @@ public class AbilityLibrary : MonoBehaviour
         addAbility(dizzy);
         addAbility(unsurprisingSlash);
         addAbility(fireSpell);
-
+        addAbility(poisonSpell);
     }
 
     // Update is called once per frame
@@ -84,6 +85,12 @@ public class AbilityLibrary : MonoBehaviour
             GameObject tempSpellBall = Instantiate(defaultSpellBallPrefab, player.transform.position + transform.forward + transform.up, player.transform.rotation);
             tempSpellBall.GetComponent<Rigidbody>().velocity = transform.forward * 10;
 
+        }
+
+        if (Input.GetKey("4") && poisonSpell.useAbility(target))
+        {
+            DamageOverTime poisonAttach = Instantiate(poisonAttachment, target.transform).GetComponent<DamageOverTime>();
+            poisonAttach.ApplyDamageEffect(3, 4, 1);
         }
 
         //Other stuff
