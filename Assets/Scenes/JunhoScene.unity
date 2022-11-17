@@ -2432,6 +2432,10 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 710056275}
+    - target: {fileID: 5321566458926028052, guid: 5bf67448ee88140eab5d23aa0b00f36a, type: 3}
+      propertyPath: defaultSpellBallPrefab
+      value: 
+      objectReference: {fileID: 1868894663109105365, guid: a3c8c44d4794f4cb69ed3976c5b87ea9, type: 3}
     - target: {fileID: 5321566458926028075, guid: 5bf67448ee88140eab5d23aa0b00f36a, type: 3}
       propertyPath: m_RootOrder
       value: 10
