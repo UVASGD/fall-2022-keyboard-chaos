@@ -760,6 +760,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c07f24e35f07ce74ba43afa35d48adf7, type: 3}
+--- !u!114 &698990675 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 698990675, guid: 635be59f9469d534da20de86a8f968b1, type: 3}
+  m_PrefabInstance: {fileID: 8122691430101401676}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &710056275 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8122691430467459359, guid: 635be59f9469d534da20de86a8f968b1, type: 3}
@@ -1143,6 +1154,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4243724423293762, guid: c07f24e35f07ce74ba43afa35d48adf7, type: 3}
   m_PrefabInstance: {fileID: 43025617}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1156042464 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1156042464, guid: 635be59f9469d534da20de86a8f968b1, type: 3}
+  m_PrefabInstance: {fileID: 8122691430101401676}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1167707348 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8122691428952575128, guid: 635be59f9469d534da20de86a8f968b1, type: 3}
@@ -1903,6 +1925,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 396888789}
     - target: {fileID: 5694076441556909912, guid: dbc1a7416f9d1724c8ae419bdc37decf, type: 3}
+      propertyPath: UItexts.Array.data[4]
+      value: 
+      objectReference: {fileID: 1156042464}
+    - target: {fileID: 5694076441556909912, guid: dbc1a7416f9d1724c8ae419bdc37decf, type: 3}
       propertyPath: UIimages.Array.data[0]
       value: 
       objectReference: {fileID: 50287889}
@@ -1918,6 +1944,10 @@ PrefabInstance:
       propertyPath: UIimages.Array.data[3]
       value: 
       objectReference: {fileID: 790297542}
+    - target: {fileID: 5694076441556909912, guid: dbc1a7416f9d1724c8ae419bdc37decf, type: 3}
+      propertyPath: UIimages.Array.data[4]
+      value: 
+      objectReference: {fileID: 698990675}
     - target: {fileID: 6066470433976387117, guid: dbc1a7416f9d1724c8ae419bdc37decf, type: 3}
       propertyPath: target
       value: 

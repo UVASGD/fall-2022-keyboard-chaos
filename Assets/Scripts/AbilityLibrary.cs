@@ -20,7 +20,7 @@ public class AbilityLibrary : MonoBehaviour
     Dictionary<string, Ability> abilites = new Dictionary<string, Ability>();
 
     //you can add things below, please DO NOT add anything above
-    Ability slice, dizzy, unsurprisingSlash, fireSpell, defaultAttack;        //might need to turn this into an array later if it gets out of control
+    Ability slice, dizzy, unsurprisingSlash, fireSpell, defaultAttack, backstab;        //might need to turn this into an array later if it gets out of control
 
     [SerializeField] GameObject defaultSpellBallPrefab;
     double meleeRange = 4;
@@ -49,6 +49,7 @@ public class AbilityLibrary : MonoBehaviour
         unsurprisingSlash = new Ability("unsurprisingSlash", player, 1, 6, "aa");
         fireSpell = new Ability("fireSpell", player, 0, 3, "aa");
         defaultAttack = new Ability("defaultAttack", player, 4, 5, "coolAttack");
+        backstab = new Ability("backstab", player, 5, 10, "coolAttack");
 
 
         //add abilities to the abilities list (with UI)
@@ -56,6 +57,7 @@ public class AbilityLibrary : MonoBehaviour
         addAbility(dizzy);
         addAbility(unsurprisingSlash);
         addAbility(fireSpell);
+        addAbility(backstab);
 
         //add abilities to the abilities list (without UI)
         addAbility(defaultAttack);
@@ -95,6 +97,15 @@ public class AbilityLibrary : MonoBehaviour
             tempSpellBall.GetComponent<Rigidbody>().velocity = transform.forward * 10;
 
         }
+        //backstab
+        if (Input.GetKey("5") && inRange(meleeRange) && backstab.tryUseAbility(target))
+        {
+            Vector3 toTarget = (target.transform.position - transform.position).normalized;
+            if(Vector3.Dot(toTarget, enemy.transform.forward) > 0.65){
+                enemy.TakeDamage(backstab.damageToEnemy * 2);
+            }
+        }
+
 
         //defaultAttack
         if (inRange(meleeRange) && defaultAttack.tryUseAbility(target)) { }

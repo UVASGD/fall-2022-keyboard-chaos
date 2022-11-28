@@ -1566,12 +1566,15 @@ MonoBehaviour:
   - dizzy
   - unsurprisingSlash
   - fireSpell
+  - backstab
   UIimages:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   UItexts:
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
