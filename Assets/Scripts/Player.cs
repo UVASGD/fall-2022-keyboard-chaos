@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Cinemachine;
+using System.Linq;
 
 public class Player : Destructible
 {
@@ -29,7 +30,7 @@ public class Player : Destructible
     public GameObject targetingArrowPrefab;
     private targetingArrow targetingArrow;
 
-    private Destructible[] possibleTargets;
+    List<Destructible> possibleTargets = new List<Destructible>();
 
 
 
@@ -39,17 +40,18 @@ public class Player : Destructible
         alive = true;
         healthBar.SetMaxHealth(maxHealth);
 
-        possibleTargets = FindObjectsOfType<Destructible>();
-        if (target == null)
+        // populate the list of all things you can target
+        Destructible[] allDestructibles = FindObjectsOfType<Destructible>();
+        foreach(Destructible thing in allDestructibles){
+            // add every destructible to the list that isn't the player
+            if(thing.gameObject != gameObject){
+                possibleTargets.Add(thing);
+            }
+        }
+        // initialize target if it hasn't been set yet
+        if (target == null && possibleTargets.Count > 0)
         {
-            if(possibleTargets[0].gameObject == gameObject)
-            {
-                target = possibleTargets[1];
-            }
-            else
-            {
-                target = possibleTargets[0];
-            }
+            target = possibleTargets[0];
         }
         Cursor.lockState = CursorLockMode.Locked;
         camera = Camera.main.gameObject.transform;
@@ -150,13 +152,22 @@ public class Player : Destructible
             lockOnCamera.Priority = 10;
             targetingArrow.targeting = true;
             targetingArrow.target = target.gameObject;
+            // if it's no longer alive, unlock
+            if(!target.alive){
+                isTargeting = false;
+            }
         }
         else
         {
             // check to see if we should change who to target (always target closest destructible thing when not currently locked on)
-            float minDist = Vector3.Distance(transform.position, target.gameObject.transform.position);
-            foreach (Destructible obj in possibleTargets)
+            float minDist = float.PositiveInfinity; //Vector3.Distance(transform.position, target.gameObject.transform.position);
+            foreach (Destructible obj in possibleTargets.ToList())
             {
+                // if something isn't alive anymore, remove it from the list
+                if(!obj.alive){
+                    possibleTargets.Remove(obj);
+                    continue;
+                }
                 if (obj.gameObject != this.gameObject && Vector3.Distance(transform.position, obj.gameObject.transform.position) < minDist)
                 {
                     target = obj;
