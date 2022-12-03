@@ -13,7 +13,7 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.tag);
+        //Debug.Log(other.gameObject.tag);
         Destructible d = other.gameObject.GetComponent<Destructible>();
         if (d != null)
         {

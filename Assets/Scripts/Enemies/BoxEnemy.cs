@@ -13,6 +13,7 @@ public class BoxEnemy : Enemy
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("DogPBR").GetComponent<Player>();
         animator = gameObject.GetComponent<Animator>();
         hitPoints = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
