@@ -47,7 +47,7 @@ public class AbilityLibrary : MonoBehaviour
         slice = new Ability("slice", player, 10, 10, "coolAttack");
         dizzy = new Ability("dizzy", player, 2, 20, "");
         unsurprisingSlash = new Ability("unsurprisingSlash", player, 1, 6, "aa");
-        fireSpell = new Ability("fireSpell", player, 0, 3, "aa");
+        fireSpell = new Ability("fireSpell", player, 0, 10, "aa");
         defaultAttack = new Ability("defaultAttack", player, 4, 5, "coolAttack");
         backstab = new Ability("backstab", player, 5, 10, "coolAttack");
 
