@@ -16,6 +16,7 @@ public class SphereEnemy : Enemy
         alive = true;
         fireSpell = new Ability("fireSpell", gameObject, 0, 5, "");
         range = 15;
+        healthBar.SetMaxHealth(maxHealth);
     }
 
     // Update is called once per frame
