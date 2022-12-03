@@ -464,6 +464,8 @@ MonoBehaviour:
   isDizzy: 0
   player: {fileID: 0}
   defaultSpellBallPrefab: {fileID: 1868894663109105365, guid: a3c8c44d4794f4cb69ed3976c5b87ea9, type: 3}
+  range: 50
+  speed: 4
 --- !u!1 &7925294531556636805
 GameObject:
   m_ObjectHideFlags: 0
