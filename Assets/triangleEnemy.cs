@@ -6,7 +6,7 @@ public class triangleEnemy : Enemy
 {
     public Player player;
     [SerializeField] GameObject defaultSpellBallPrefab;
-    Ability fireSpell;
+    Ability triangleAttack;
     public float range;
     Rigidbody rb;
     GameObject go;
@@ -17,7 +17,7 @@ public class triangleEnemy : Enemy
     {
         hitPoints = maxHealth;
         alive = true;
-        fireSpell = new Ability("fireSpell", gameObject, 0, 5, "");
+        triangleAttack = new Ability("triangleAttack", gameObject, 0, 1, "");
         range = 15;
         healthBar.SetMaxHealth(maxHealth);
         rb = GetComponent<Rigidbody>();
@@ -41,9 +41,9 @@ public class triangleEnemy : Enemy
         }
            
 
-        if (alive && inRange && !isDizzy && fireSpell.tryUseAbility(player))
+        if (alive && inRange && !isDizzy && triangleAttack.tryUseAbility(player))
         {
-            GameObject tempSpellBall = Instantiate(defaultSpellBallPrefab,gameObject.transform.position + gameObject.transform.forward*5, transform.rotation);
+            GameObject tempSpellBall = Instantiate(defaultSpellBallPrefab, gameObject.transform.position + gameObject.transform.forward * 5, transform.rotation);
             tempSpellBall.GetComponent<Rigidbody>().velocity = transform.forward * 10;
         }
     }

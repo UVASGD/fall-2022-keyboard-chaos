@@ -191,7 +191,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 6.8, y: 0}
   m_SizeDelta: {x: 157.24, y: 27.209991}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4196913059746992513
@@ -297,7 +297,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4469477903246344605}
   m_LocalRotation: {x: 0.7071069, y: -0, z: -0, w: 0.70710677}
-  m_LocalPosition: {x: 0, y: 0, z: -6.2}
+  m_LocalPosition: {x: 0, y: 0, z: 4.6}
   m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -307,7 +307,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.25, y: -2.15}
   m_SizeDelta: {x: 189.7828, y: 52.7816}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &4268183867592533070
@@ -585,5 +585,5 @@ MonoBehaviour:
   isDizzy: 0
   player: {fileID: 0}
   defaultSpellBallPrefab: {fileID: 1868894663109105365, guid: a3c8c44d4794f4cb69ed3976c5b87ea9, type: 3}
-  range: 20
-  speed: 10
+  range: 25
+  speed: 1.5
