@@ -145,7 +145,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4300976899860346543}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1.3209574}
+  m_LocalPosition: {x: 0, y: 0, z: -0.56}
   m_LocalScale: {x: 0.017850766, y: 0.017850766, z: 0.017850766}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -155,7 +155,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -2.873932, y: 2.0349874}
+  m_AnchoredPosition: {x: 0.06, y: 2.0349874}
   m_SizeDelta: {x: 189.7828, y: 52.7816}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &8170151496531281586
@@ -248,7 +248,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5321566458926028079}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 375.11, y: 3.26, z: 175.97}
+  m_LocalPosition: {x: 374.38, y: 3.26, z: 175.97}
   m_LocalScale: {x: 1.6806, y: 1.6806, z: 1.6806}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -335,10 +335,12 @@ MonoBehaviour:
   maxHealth: 100
   hitPoints: 100
   alive: 1
-  healthBar: {fileID: 0}
+  healthBar: {fileID: 7642564612651664924}
   isDizzy: 0
   player: {fileID: 0}
   defaultSpellBallPrefab: {fileID: 1868894663109105365, guid: a3c8c44d4794f4cb69ed3976c5b87ea9, type: 3}
+  range: 0
+  speed: 0
 --- !u!1 &6080087753153717597
 GameObject:
   m_ObjectHideFlags: 0
