@@ -8,6 +8,7 @@ public class TransitionManager : MonoBehaviour
     public Animator transition;
     public float transitionTime = 1f;
     private bool RPressed = false;
+    Player player;
 
     private List<Destructible> enemies = new List<Destructible>();
 
@@ -19,6 +20,8 @@ public class TransitionManager : MonoBehaviour
         foreach(Destructible e in possibleTargets){
             if(e.GetComponent<Player>() == null){
                 enemies.Add(e);
+            }else{
+                player = e.GetComponent<Player>();
             }
         }
     }
@@ -27,11 +30,6 @@ public class TransitionManager : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.R) && !RPressed)
-        {
-            Restart();
-            RPressed = true;
-        }
     }
 
     private void FixedUpdate()
@@ -44,6 +42,11 @@ public class TransitionManager : MonoBehaviour
                 allEnemiesDead = false;
             }
         }
+
+        if(!player.alive){
+            Restart();
+        }
+
         if(allEnemiesDead){
             winLevel();
         }

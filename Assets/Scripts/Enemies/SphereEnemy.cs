@@ -9,6 +9,7 @@ public class SphereEnemy : Enemy
     Ability fireSpell;
     public float range;
     Rigidbody rb;
+    public float speed;
 
     // Start is called before the first frame update
     void Start()
@@ -16,7 +17,6 @@ public class SphereEnemy : Enemy
         hitPoints = maxHealth;
         alive = true;
         fireSpell = new Ability("fireSpell", gameObject, 0, 5, "");
-        range = 15;
         healthBar.SetMaxHealth(maxHealth);
         rb = GetComponent<Rigidbody>();
     }
@@ -33,7 +33,8 @@ public class SphereEnemy : Enemy
 
         if (alive && inRange && !isDizzy && fireSpell.tryUseAbility(player)) {
             GameObject tempSpellBall = Instantiate(defaultSpellBallPrefab, transform.position + transform.forward + transform.up, transform.rotation);
-            tempSpellBall.GetComponent<Rigidbody>().velocity = transform.forward * 10;
+            tempSpellBall.GetComponent<Rigidbody>().velocity = transform.forward * speed;
+            tempSpellBall.transform.localScale = new Vector3(1, 1, 1);
         }
     }
 
