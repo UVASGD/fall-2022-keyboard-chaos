@@ -22,7 +22,7 @@ public class ShereEnemyMovement : MonoBehaviour
     void Update()
     {
         i++;
-        if (i == 500)
+        if (i == 450 + Random.Range(0, 100))
         {
             if (height < 1 && Random.Range(0,100) < 40)
             {
