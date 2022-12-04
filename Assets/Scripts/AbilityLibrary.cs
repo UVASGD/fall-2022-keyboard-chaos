@@ -85,7 +85,7 @@ public class AbilityLibrary : MonoBehaviour
         {
             if (enemy.isDizzy)
             {
-                enemy.TakeDamage(unsurprisingSlash.damageToEnemy * 20);
+                enemy.TakeDamage(unsurprisingSlash.damageToEnemy * 10);
                 animator.SetTrigger("coolAttack");
             }
         }
@@ -94,7 +94,7 @@ public class AbilityLibrary : MonoBehaviour
         if (Input.GetKey("7") && fireSpell.tryUseAbility(target))
         {
             GameObject tempSpellBall = Instantiate(defaultSpellBallPrefab, player.transform.position + transform.forward + transform.up, player.transform.rotation);
-            tempSpellBall.GetComponent<Rigidbody>().velocity = transform.forward * 10;
+            tempSpellBall.GetComponent<Rigidbody>().velocity = transform.forward * 20;
 
         }
         //backstab

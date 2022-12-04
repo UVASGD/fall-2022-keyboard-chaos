@@ -32,11 +32,14 @@ public class SphereEnemy : Enemy
         if (alive && inRange && !isDizzy && fireSpell.tryUseAbility(player)) {
             GameObject tempSpellBall = Instantiate(defaultSpellBallPrefab, transform.position + transform.forward + transform.up, transform.rotation);
             tempSpellBall.GetComponent<Rigidbody>().velocity = transform.forward * speed;
+            tempSpellBall.transform.localScale = new Vector3(1, 1, 1);
         }
     }
 
     public override void Die() {
         alive = false;
+        gameObject.GetComponent<Rigidbody>().useGravity = true;
+        player = null;
     }
 
     public override void TakeDamage(float amount)
