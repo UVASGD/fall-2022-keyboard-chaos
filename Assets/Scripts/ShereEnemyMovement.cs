@@ -29,7 +29,7 @@ public class ShereEnemyMovement : MonoBehaviour
                 height = 3;
                 nextPos = new Vector3(transform.position.x, player.transform.position.y + height + 1, transform.position.z);
             }
-            else if (height > 1 && Random.Range(0,100) < 70)
+            else if (height > 1 && Random.Range(0,100) < 80)
             {
                 height = 0;
                 nextPos = new Vector3(transform.position.x, player.transform.position.y + 1, transform.position.z);
@@ -44,4 +44,5 @@ public class ShereEnemyMovement : MonoBehaviour
         
         transform.position = Vector3.Lerp(transform.position, nextPos, speed*Time.deltaTime);
     }
+
 }
