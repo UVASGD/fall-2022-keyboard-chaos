@@ -8,6 +8,7 @@ public class SphereEnemy : Enemy
     [SerializeField] GameObject defaultSpellBallPrefab;
     Ability fireSpell;
     public float range;
+    Rigidbody rb;
     public float speed;
 
     // Start is called before the first frame update
@@ -17,6 +18,7 @@ public class SphereEnemy : Enemy
         alive = true;
         fireSpell = new Ability("fireSpell", gameObject, 0, 5, "");
         healthBar.SetMaxHealth(maxHealth);
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -38,7 +40,7 @@ public class SphereEnemy : Enemy
 
     public override void Die() {
         alive = false;
-        gameObject.GetComponent<Rigidbody>().useGravity = true;
+        rb.useGravity = true;
         player = null;
     }
 
