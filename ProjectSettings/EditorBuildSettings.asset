@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/TransitionTest1.unity
     guid: f6d72b5b1250db7428fb8bd0de71f4a2
   - enabled: 1
+    path: Assets/Scenes/Desert Scene.unity
+    guid: baab16fcda9cf9f4f80ebe5b5c0749c7
+  - enabled: 1
     path: Assets/Scenes/TransitionTest2.unity
     guid: 957faed9ffe1d484dabe36fea93c687c
   - enabled: 1

@@ -462,6 +462,7 @@ GameObject:
   - component: {fileID: 4547576173683097861}
   - component: {fileID: 8543197135753358351}
   - component: {fileID: 6337548581955801980}
+  - component: {fileID: 16679160}
   m_Layer: 0
   m_Name: Triangle
   m_TagString: Untagged
@@ -483,7 +484,7 @@ Transform:
   m_Children:
   - {fileID: 1237965268136140698}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &6028695015643914927
 MeshFilter:
@@ -492,7 +493,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8020401953699854256}
-  m_Mesh: {fileID: 4711208715938537054, guid: 349d0e6c7474d0e42bfe39bd8b1554c8, type: 3}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &8380861790402074213
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -513,8 +514,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6478536213147159724, guid: 349d0e6c7474d0e42bfe39bd8b1554c8, type: 3}
-  - {fileID: -3846018093981099296, guid: 349d0e6c7474d0e42bfe39bd8b1554c8, type: 3}
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -585,5 +585,20 @@ MonoBehaviour:
   isDizzy: 0
   player: {fileID: 0}
   defaultSpellBallPrefab: {fileID: 1868894663109105365, guid: a3c8c44d4794f4cb69ed3976c5b87ea9, type: 3}
-  range: 25
+  range: 55
   speed: 1.5
+--- !u!114 &16679160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8020401953699854256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac970f2607ea44483ac49d498d058962, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  speed: 1
+  maxAway: 20
