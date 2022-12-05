@@ -9,6 +9,7 @@ using System.Linq;
 public class Player : Destructible
 {
     public Animator animator;
+    //public AudioManager audio;
 
     public GameObject player;
     
@@ -57,6 +58,7 @@ public class Player : Destructible
         camera = Camera.main.gameObject.transform;
         controller = gameObject.GetComponent<CharacterController>();
         animator = gameObject.GetComponent<Animator>();
+        //audio = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         //set up targeting arrow UI
         targetingArrow = GameObject.Instantiate(targetingArrowPrefab).GetComponent<targetingArrow>();
         targetingArrow.target = target.gameObject;
@@ -112,6 +114,7 @@ public class Player : Destructible
         if (move != Vector3.zero)
         {
             gameObject.transform.forward = Vector3.Slerp(gameObject.transform.forward, move, Time.deltaTime*5);
+            AudioManager.instance.Play("step");
         }
 
         //spin towards target if stationary (so you dont attack behind you lol)
@@ -181,9 +184,21 @@ public class Player : Destructible
         }
     }
 
-public override void Die(){
-        alive = false;
-        animator.SetTrigger("die");
-    }
+    public override void Die(){
+            alive = false;
+            animator.SetTrigger("die");
+        }
 
+    public override void TakeDamage(float amount)
+    {
+        this.hitPoints -= amount; //not sure why I'm using "this" but this code works lmao
+        AudioManager.instance.Play("playerDmg");
+        if(healthBar){
+            healthBar.SetHealth(this.hitPoints);
+        }
+        if (hitPoints <= 0)
+        {
+            Die();
+        }
+    }
 }

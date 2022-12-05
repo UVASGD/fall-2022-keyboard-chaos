@@ -24,13 +24,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7363709837769100073}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 364.49673, y: 3.6011064, z: 175.40633}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5101014008011879749
 MonoBehaviour:
@@ -44,6 +44,66 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fb6b8603e8e80747a070d96e444fed2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds: []
+  sounds:
+  - name: heavyAtk
+    clip: {fileID: 8300000, guid: 349aaaa80ccfe894e9c96ef8a94f7525, type: 3}
+    volume: 0.359
+    pitch: 1.02
+    loop: 0
+    source: {fileID: 0}
+  - name: fire
+    clip: {fileID: 8300000, guid: 39846a69a11c1414b88c2d338782018e, type: 3}
+    volume: 0.365
+    pitch: 0.98
+    loop: 0
+    source: {fileID: 0}
+  - name: step
+    clip: {fileID: 8300000, guid: c307c7c4cd4e2c246aa483aab3803411, type: 3}
+    volume: 0.341
+    pitch: 0.82
+    loop: 0
+    source: {fileID: 0}
+  - name: lightAtk
+    clip: {fileID: 8300000, guid: dbf012e3c016d38428fc7da715353ba2, type: 3}
+    volume: 0.315
+    pitch: 1.04
+    loop: 0
+    source: {fileID: 0}
+  - name: monsterDmg
+    clip: {fileID: 8300000, guid: 496b42435929e4c4f93527641d35ef9e, type: 3}
+    volume: 0.323
+    pitch: 0.78
+    loop: 0
+    source: {fileID: 0}
+  - name: playerDmg
+    clip: {fileID: 8300000, guid: 6b2653b960184fa409ac75df7f792f7c, type: 3}
+    volume: 0.342
+    pitch: 0.84
+    loop: 0
+    source: {fileID: 0}
+  - name: dizzy
+    clip: {fileID: 8300000, guid: 466e61a986aa4f346996abf164a843d0, type: 3}
+    volume: 0.342
+    pitch: 1.08
+    loop: 0
+    source: {fileID: 0}
+  - name: basic
+    clip: {fileID: 8300000, guid: 029e7c5ad53236a4ca5696b9b625fb08, type: 3}
+    volume: 0.342
+    pitch: 1.08
+    loop: 0
+    source: {fileID: 0}
+  - name: thud
+    clip: {fileID: 8300000, guid: b49d7459121a2f34bad80e896253c728, type: 3}
+    volume: 0.342
+    pitch: 1.08
+    loop: 0
+    source: {fileID: 0}
+  - name: monsterDmgLight
+    clip: {fileID: 8300000, guid: af8114f838501c7438ad4233fbdb0450, type: 3}
+    volume: 0.342
+    pitch: 1.08
+    loop: 0
+    source: {fileID: 0}
   muted: 0
   doDynamicMusic: 0

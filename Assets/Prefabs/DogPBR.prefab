@@ -1445,6 +1445,7 @@ GameObject:
   - component: {fileID: 6066470433976387116}
   - component: {fileID: 6066470433976387117}
   - component: {fileID: 5694076441556909912}
+  - component: {fileID: 3960289355209749253}
   m_Layer: 0
   m_Name: DogPBR
   m_TagString: Untagged
@@ -1580,6 +1581,18 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   defaultSpellBallPrefab: {fileID: 1868894663109105365, guid: a3c8c44d4794f4cb69ed3976c5b87ea9, type: 3}
+--- !u!114 &3960289355209749253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2365602016985692404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96aefe5a9f702f84cade16edf0160ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2365602016985692406
 GameObject:
   m_ObjectHideFlags: 0
@@ -2645,6 +2658,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 2365602016986047672}
     m_Modifications:
     - target: {fileID: 100000, guid: 588cb1a3084bba747b81631d0c071523, type: 3}
@@ -2700,6 +2714,7 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: da05e49adf02c134f88f541992ee78d2, type: 2}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 588cb1a3084bba747b81631d0c071523, type: 3}
 --- !u!4 &3382925644389364469 stripped
 Transform:
@@ -2711,6 +2726,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 2365602016986047830}
     m_Modifications:
     - target: {fileID: 100000, guid: 9ef625d01f79b4e4eb62fcdf032954ca, type: 3}
@@ -2766,6 +2782,7 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: da05e49adf02c134f88f541992ee78d2, type: 2}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ef625d01f79b4e4eb62fcdf032954ca, type: 3}
 --- !u!4 &5993296030692767002 stripped
 Transform:

@@ -12,6 +12,7 @@ public class AbilityLibrary : MonoBehaviour
     [SerializeField] Destructible target;   //need to generalize, see the thing below
     private Player playerMovement;
     private GameObject cameraTarget;
+    private AudioManager audio;
 
     [SerializeField] string[] names;
     [SerializeField] Image[] UIimages;
@@ -38,6 +39,7 @@ public class AbilityLibrary : MonoBehaviour
     void Start()
     {
         playerMovement = GetComponent<Player>();
+        //audio = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         target = playerMovement.target;
         player = gameObject;
         animator = player.GetComponent<Animator>();
@@ -72,12 +74,15 @@ public class AbilityLibrary : MonoBehaviour
         //actually in order to get this to be more general to other enemies/multiple enimies/hitboxes/effects/special damage, I think the ability might just store the cooldown and everything else can be done in the if, we'll see
 
         //slice
-        if (Input.GetKey("1") && inRange(meleeRange) && slice.tryUseAbility(target)) { }
+        if (Input.GetKey("1") && inRange(meleeRange) && slice.tryUseAbility(target)) { 
+            AudioManager.instance.Play("lightAtk");
+        }
 
         //dizzy
         if (Input.GetKey("2") && dizzy.tryUseAbility(target))
         {
             enemy.MakeDizzy();
+            AudioManager.instance.Play("dizzy");
         }
 
         //unsurprising
@@ -87,6 +92,10 @@ public class AbilityLibrary : MonoBehaviour
             {
                 enemy.TakeDamage(unsurprisingSlash.damageToEnemy * 10);
                 animator.SetTrigger("coolAttack");
+                AudioManager.instance.Play("heavyAtk");
+            }
+            else{
+                AudioManager.instance.Play("lightAtk");
             }
         }
 
@@ -95,7 +104,7 @@ public class AbilityLibrary : MonoBehaviour
         {
             GameObject tempSpellBall = Instantiate(defaultSpellBallPrefab, player.transform.position + transform.forward + transform.up, player.transform.rotation);
             tempSpellBall.GetComponent<Rigidbody>().velocity = transform.forward * 20;
-
+            AudioManager.instance.Play("fire");
         }
         //backstab
         if (Input.GetKey("5") && inRange(meleeRange) && backstab.tryUseAbility(target))
@@ -103,12 +112,17 @@ public class AbilityLibrary : MonoBehaviour
             Vector3 toTarget = (target.transform.position - transform.position).normalized;
             if(Vector3.Dot(toTarget, enemy.transform.forward) > 0.65){
                 enemy.TakeDamage(backstab.damageToEnemy * 2);
+                AudioManager.instance.Play("thud");
+            }else{
+                AudioManager.instance.Play("lightAtk");
             }
         }
 
 
         //defaultAttack
-        if (inRange(meleeRange) && defaultAttack.tryUseAbility(target)) { }
+        if (inRange(meleeRange) && defaultAttack.tryUseAbility(target)) {
+            AudioManager.instance.Play("basic");
+         }
 
         //Other stuff
         UIUpdate();

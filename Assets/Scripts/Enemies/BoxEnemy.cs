@@ -47,6 +47,12 @@ public class BoxEnemy : Enemy
     public override void TakeDamage(float amount){
         this.hitPoints -= amount; //not sure why I'm using "this" but this code works lmao
         animator.SetTrigger("getHit");
+        if(amount > 10){
+            AudioManager.instance.Play("monsterDmg");
+        }
+        else{
+            AudioManager.instance.Play("monsterDmgLight");
+        }
         if(healthBar){
             healthBar.SetHealth(this.hitPoints);
         }
